@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import apiRouter from "./routes";
 import BaseError from "./errors/base.error";
 import errorHandler from "./utils/errorHandler";
+import connectToDB from "./config/db.config";
 
 const app = express();
 
@@ -20,4 +21,7 @@ app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+  connectToDB()
+    .then(() => console.log("Database connected"))
+    .catch((error) => console.log(error));
 });
