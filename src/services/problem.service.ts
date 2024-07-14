@@ -9,16 +9,16 @@ export default class ProblemService {
   }
 
   async createProblem(problemData: any) {
-    try {
-      // 1. Sanitize the markdown for description
-      problemData.description = await sanitizieMarkdownContent(
-        problemData.description
-      );
-      const problem = await this.problemReposity.createProblem(problemData);
-      return problem;
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
+    // 1. Sanitize the markdown for description
+    problemData.description = await sanitizieMarkdownContent(
+      problemData.description
+    );
+    const problem = await this.problemReposity.createProblem(problemData);
+    return problem;
+  }
+
+  async getAllProblems() {
+    const problems = await this.problemReposity.getAllProblems();
+    return problems;
   }
 }
