@@ -26,4 +26,9 @@ export default class ProblemService {
     const problem = await this.problemReposity.getProblem(id);
     return problem;
   }
+
+  async deleteProblem(id: string) {
+    const deletedProblem = await this.problemReposity.deleteProblem(id);
+    return deletedProblem;
+  }
 }
