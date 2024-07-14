@@ -1,3 +1,4 @@
+import NotFoundError from "../errors/notFound.error";
 import Problem from "../models/problem.model";
 
 export default class ProblemRepository {
@@ -20,6 +21,19 @@ export default class ProblemRepository {
     try {
       const problems = await Problem.find({});
       return problems;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+
+  async getProblem(id: string) {
+    try {
+      const problem = await Problem.findById(id);
+      if (!problem) {
+        throw new NotFoundError("Problem", id);
+      }
+      return problem;
     } catch (error) {
       console.log(error);
       throw error;

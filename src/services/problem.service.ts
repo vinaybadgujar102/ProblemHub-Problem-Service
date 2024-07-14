@@ -21,4 +21,9 @@ export default class ProblemService {
     const problems = await this.problemReposity.getAllProblems();
     return problems;
   }
+
+  async getProblem(id: string) {
+    const problem = await this.problemReposity.getProblem(id);
+    return problem;
+  }
 }

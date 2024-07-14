@@ -36,10 +36,22 @@ export async function addProblem(
   }
 }
 
-export function getProblem(req: Request, res: Response, next: NextFunction) {
-  return res.status(StatusCodes.NOT_IMPLEMENTED).json({
-    message: "Not Implemented",
-  });
+export async function getProblem(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  try {
+    const problem = await problemService.getProblem(req.params.id);
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: "Successfully fetched problem",
+      err: {},
+      data: problem,
+    });
+  } catch (error) {
+    next(error);
+  }
 }
 
 export async function getProblems(
@@ -55,7 +67,9 @@ export async function getProblems(
       err: {},
       data: response,
     });
-  } catch (error) {}
+  } catch (error) {
+    next(error);
+  }
 }
 
 export function deleteProblem(req: Request, res: Response, next: NextFunction) {
