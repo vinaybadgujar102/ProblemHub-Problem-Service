@@ -1,3 +1,4 @@
+import logger from "../config/logger.config";
 import NotFoundError from "../errors/notFound.error";
 import Problem from "../models/problem.model";
 
@@ -46,9 +47,10 @@ export default class ProblemRepository {
       if (!deletedProblem) {
         throw new NotFoundError("Problem", id);
       }
+      logger.info("Problem deleted successfully");
       return deletedProblem;
     } catch (error) {
-      console.log(error);
+      logger.warn(error);
       throw error;
     }
   }

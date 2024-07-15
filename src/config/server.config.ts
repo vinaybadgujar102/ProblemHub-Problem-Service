@@ -5,3 +5,4 @@ dotenv.config();
 export const PORT = process.env.PORT || 3000;
 export const ATLAS_DB_URL = process.env.ATLAS_DB_URL as string;
 export const NODE_ENV = process.env.NODE_ENV || "development";
+export const ATLAS_DB_LOGGER_URL = process.env.ATLAS_DB_LOGGER_URL as string;
